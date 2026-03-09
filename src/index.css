@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&family=IBM+Plex+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: #080808;
+  color: #F0EBE1;
+  font-family: 'DM Sans', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #080808; }
+::-webkit-scrollbar-thumb { background: #2E2E30; }
+
+.font-display { font-family: 'Cormorant Garamond', Georgia, serif; }
+.font-mono { font-family: 'IBM Plex Mono', 'Courier New', monospace; }
+
+@keyframes flowLine {
+  0% { stroke-dashoffset: 100; }
+  100% { stroke-dashoffset: 0; }
+}
+
+@keyframes goldPulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; box-shadow: 0 0 8px rgba(196,151,42,0.6); }
+}
+
+@keyframes nodePing {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+.live-dot {
+  animation: goldPulse 2s ease-in-out infinite;
+}
+
+.flow-path {
+  stroke-dasharray: 6 6;
+  animation: flowLine 1.5s linear infinite;
+}
+
+/* Cal.com embed override */
+#my-cal-inline { border: 1px solid #2E2E30; border-radius: 4px; overflow: hidden; }

@@ -1,70 +1,66 @@
-import { motion } from 'framer-motion'
-import { useInView } from 'framer-motion'
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 
 const rows = [
-  { attr: 'Positioning', them: 'Vendor selling a product', us: 'Operator with access on both sides' },
-  { attr: 'Outreach style', them: 'Cold email volume campaigns', us: 'Event-triggered introductions, connector frame' },
-  { attr: 'Signal source', them: 'Bought lists, manual research', us: '10+ live public sources monitored 24/7' },
-  { attr: 'Copy approach', them: 'Generic templates, no context', us: 'Pain-specific, tied to a real event, always fresh' },
-  { attr: 'Time to market', them: 'Days to weeks to send anything', us: '<24 hours from signal to live campaign' },
-  { attr: 'What you pay for', them: 'Leads — you close them yourself', us: 'Qualified conversations that already took place' },
+  { attr: 'Positioning', them: 'Vendor with a product', us: 'Operator with access on both sides of the table' },
+  { attr: 'Outreach', them: 'Cold email volume', us: 'Event-triggered introduction, connector frame' },
+  { attr: 'Signal source', them: 'Bought lists, manual research', us: '10+ live public sources, monitored 24/7' },
+  { attr: 'Copy', them: 'Generic templates, no context', us: 'Pain-specific, tied to a real event, always fresh' },
+  { attr: 'Speed', them: 'Days to weeks', us: '<24 hours from signal to live Instantly campaign' },
+  { attr: 'What you pay for', them: 'Leads you close yourself', us: 'Qualified conversations that already took place' },
 ]
 
 export default function Comparison() {
-  const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-80px' })
+  const ref = useRef<HTMLElement>(null)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.querySelectorAll('.reveal').forEach((el, i) => {
+            setTimeout(() => el.classList.add('visible'), i * 80)
+          })
+        }
+      })
+    }, { threshold: 0.1, rootMargin: '-60px' })
+    if (ref.current) observer.observe(ref.current)
+    return () => observer.disconnect()
+  }, [])
 
   return (
-    <section ref={ref} style={{ padding: '120px 60px', maxWidth: '1280px', margin: '0 auto' }}>
-      <motion.div
-        initial={{ opacity: 0, y: 16 }}
-        animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
-        className="flex items-center gap-4 mb-8"
-      >
-        <div className="w-7 h-px bg-aged-gold" />
-        <span className="font-mono text-xs text-muted tracking-widest uppercase">Why we're different</span>
-      </motion.div>
+    <section ref={ref} style={{ padding: '128px 64px', maxWidth: '1320px', margin: '0 auto' }}>
+      <div className="reveal" style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '48px' }}>
+        <div style={{ width: '32px', height: '1px', background: '#8A6A1E' }} />
+        <span className="font-mono" style={{ fontSize: '10px', color: '#9A9188', letterSpacing: '0.14em', textTransform: 'uppercase' }}>Why we're different</span>
+      </div>
 
-      <motion.h2
-        initial={{ opacity: 0, y: 16 }}
-        animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
-        className="font-display font-semibold leading-tight tracking-tight mb-16"
-        style={{ fontSize: 'clamp(36px, 5vw, 60px)' }}
-      >
-        Not an agency.<br />An operator.
-      </motion.h2>
+      <h2 className="font-display reveal d1" style={{ fontSize: 'clamp(40px, 5vw, 64px)', fontWeight: 600, lineHeight: 1.0, letterSpacing: '-0.025em', marginBottom: '80px' }}>
+        Not an agency.<br />
+        <em style={{ fontStyle: 'italic', color: '#9A9188' }}>An operator.</em>
+      </h2>
 
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
-        className="border border-graphite rounded-sm overflow-hidden"
-      >
+      {/* Table — pure typography, no box */}
+      <div className="reveal d2" style={{ borderTop: '1px solid #2a2a2a' }}>
         {/* Header */}
-        <div className="grid bg-smoke border-b border-graphite" style={{ gridTemplateColumns: '200px 1fr 1fr' }}>
-          <div className="px-7 py-4" />
-          <div className="px-7 py-4 border-l border-graphite font-mono text-xs text-muted tracking-widest uppercase">Everyone else</div>
-          <div className="px-7 py-4 border-l border-graphite font-mono text-xs text-gold tracking-widest uppercase" style={{ background: 'rgba(196,151,42,0.05)' }}>nuBeam Gen</div>
+        <div style={{ display: 'grid', gridTemplateColumns: '180px 1fr 1fr', borderBottom: '1px solid #2a2a2a', background: '#141414' }}>
+          <div style={{ padding: '16px 0' }} />
+          <div className="font-mono" style={{ padding: '16px 32px', fontSize: '10px', color: '#9A9188', letterSpacing: '0.12em', textTransform: 'uppercase', borderLeft: '1px solid #2a2a2a' }}>Everyone else</div>
+          <div className="font-mono" style={{ padding: '16px 32px', fontSize: '10px', color: '#C4972A', letterSpacing: '0.12em', textTransform: 'uppercase', borderLeft: '1px solid #2a2a2a' }}>nuBeam Gen</div>
         </div>
 
         {rows.map((r) => (
-          <div
-            key={r.attr}
-            className="grid border-b border-graphite/50 last:border-b-0 hover:bg-white/[0.01] transition-colors"
-            style={{ gridTemplateColumns: '200px 1fr 1fr' }}
-          >
-            <div className="px-7 py-5 font-mono text-xs text-muted uppercase tracking-wider flex items-center">{r.attr}</div>
-            <div className="px-7 py-5 border-l border-graphite text-muted text-sm flex items-center">{r.them}</div>
-            <div className="px-7 py-5 border-l border-graphite text-sm flex items-center gap-3" style={{ background: 'rgba(196,151,42,0.04)' }}>
-              <span className="font-mono text-gold text-xs flex-shrink-0">→</span>
-              <span className="text-bone">{r.us}</span>
+          <div key={r.attr} style={{
+            display: 'grid', gridTemplateColumns: '180px 1fr 1fr',
+            borderBottom: '1px solid rgba(42,42,42,0.5)',
+          }}>
+            <div className="font-mono" style={{ padding: '22px 0', fontSize: '10px', color: '#9A9188', letterSpacing: '0.1em', textTransform: 'uppercase', display: 'flex', alignItems: 'center' }}>{r.attr}</div>
+            <div className="font-ui" style={{ padding: '22px 32px', fontSize: '14px', fontWeight: 300, color: '#9A9188', lineHeight: 1.6, borderLeft: '1px solid rgba(42,42,42,0.5)', display: 'flex', alignItems: 'center' }}>{r.them}</div>
+            <div className="font-ui" style={{ padding: '22px 32px', fontSize: '14px', fontWeight: 300, color: '#F0EBE1', lineHeight: 1.6, borderLeft: '1px solid rgba(42,42,42,0.5)', display: 'flex', alignItems: 'center', gap: '12px', background: 'rgba(196,151,42,0.03)' }}>
+              <span className="font-mono" style={{ color: '#C4972A', fontSize: '11px', flexShrink: 0 }}>→</span>
+              {r.us}
             </div>
           </div>
         ))}
-      </motion.div>
+      </div>
     </section>
   )
 }

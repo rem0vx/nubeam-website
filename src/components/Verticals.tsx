@@ -1,86 +1,113 @@
-import { motion } from 'framer-motion'
-import { useInView } from 'framer-motion'
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 
 const verticals = [
   {
-    tag: 'FinTech',
+    num: '001',
+    vertical: 'FinTech',
     headline: 'The AUM is there.\nThe access isn\'t.',
-    body: 'You\'re selling to RIAs and family offices managing $100M–$5B. The relationship is everything — and you don\'t have it yet. We do. We introduce when the fit is right.',
-    signals: ['Form D filings', 'FDIC activity', 'SEC 8-K exec changes', 'News RSS'],
-    buyers: 'RIAs & Family Offices',
+    body: 'You\'re selling to RIAs and family offices managing $100M–$5B. The relationship is everything — and you don\'t have it yet. We do. When the fit is right, we make the call.',
+    buyer: 'RIAs & Family Offices',
+    signals: ['Form D filings', 'FDIC activity', 'SEC 8-K exec changes'],
   },
   {
-    tag: 'Biotech',
+    num: '002',
+    vertical: 'Biotech',
     headline: 'Pharma BD moves\non relationships.',
-    body: 'BD timelines run 18–36 months. The firms that close fast got in early, introduced by someone already trusted on both sides. That\'s the seat we hold.',
-    signals: ['Clinical trial milestones', 'FDA clearances', 'Series B/C rounds', 'Executive moves'],
-    buyers: 'Pharma BD Teams',
+    body: 'BD timelines run 18–36 months. The firms that close fast got in early — introduced by someone already trusted on both sides. That\'s the seat we hold.',
+    buyer: 'Pharma BD Teams',
+    signals: ['FDA clearances', 'Series B/C raises', 'Clinical milestones'],
   },
   {
-    tag: 'Tech Recruiting',
-    headline: 'Series B just closed.\nThey\'re hiring now.',
-    body: 'When a SaaS firm closes a funding round, they\'re building out leadership in 90 days. We see the filing before the job posting goes up. We make the call first.',
-    signals: ['Form D filings', 'SEC 8-K material events', 'Funding news', 'LinkedIn signals'],
-    buyers: 'Series A–C SaaS Firms',
+    num: '003',
+    vertical: 'Tech Recruiting',
+    headline: 'Series B closed.\nThey\'re hiring now.',
+    body: 'When a SaaS firm closes a funding round, they\'re building out leadership in 90 days. We see the Form D filing before the job post goes live. We make the introduction first.',
+    buyer: 'Series A–C SaaS Firms',
+    signals: ['Form D filings', 'SEC 8-K events', 'Funding news RSS'],
   },
 ]
 
 export default function Verticals() {
-  const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-80px' })
+  const ref = useRef<HTMLElement>(null)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.querySelectorAll('.reveal').forEach((el, i) => {
+            setTimeout(() => el.classList.add('visible'), i * 100)
+          })
+        }
+      })
+    }, { threshold: 0.1, rootMargin: '-60px' })
+    if (ref.current) observer.observe(ref.current)
+    return () => observer.disconnect()
+  }, [])
 
   return (
-    <section id="verticals" ref={ref} style={{ padding: '120px 60px', maxWidth: '1280px', margin: '0 auto' }}>
-      <motion.div
-        initial={{ opacity: 0, y: 16 }}
-        animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
-        className="flex items-center gap-4 mb-8"
-      >
-        <div className="w-7 h-px bg-aged-gold" />
-        <span className="font-mono text-xs text-muted tracking-widest uppercase">Who we serve</span>
-      </motion.div>
+    <section id="verticals" ref={ref} style={{ padding: '128px 64px', maxWidth: '1320px', margin: '0 auto' }}>
+      {/* Section label */}
+      <div className="reveal" style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '48px' }}>
+        <div style={{ width: '32px', height: '1px', background: '#8A6A1E' }} />
+        <span className="font-mono" style={{ fontSize: '10px', color: '#9A9188', letterSpacing: '0.14em', textTransform: 'uppercase' }}>Who we serve</span>
+      </div>
 
-      <motion.h2
-        initial={{ opacity: 0, y: 16 }}
-        animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
-        className="font-display font-semibold leading-tight tracking-tight mb-16"
-        style={{ fontSize: 'clamp(36px, 5vw, 60px)' }}
-      >
-        3 verticals.<br />All signal-driven.
-      </motion.h2>
+      <h2 className="font-display reveal d1" style={{
+        fontSize: 'clamp(40px, 5vw, 64px)',
+        fontWeight: 600, lineHeight: 1.0,
+        letterSpacing: '-0.025em',
+        marginBottom: '80px',
+      }}>
+        3 verticals.<br />
+        <em style={{ fontStyle: 'italic', color: '#9A9188' }}>All signal-driven.</em>
+      </h2>
 
-      <div className="grid grid-cols-3 gap-px bg-graphite border border-graphite rounded-sm overflow-hidden">
+      {/* Verticals — no cards, just ruled columns */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', borderTop: '1px solid #2a2a2a' }}>
         {verticals.map((v, i) => (
-          <motion.div
-            key={v.tag}
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.1 + i * 0.1, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
-            className="bg-void p-10 group hover:bg-smoke transition-colors duration-200"
+          <div
+            key={v.num}
+            className="reveal"
+            style={{
+              padding: '48px 40px 48px 0',
+              borderRight: i < 2 ? '1px solid #2a2a2a' : 'none',
+              paddingLeft: i > 0 ? '40px' : '0',
+              transitionDelay: `${i * 0.12}s`,
+            }}
           >
-            <div className="font-mono text-xs text-aged-gold tracking-widest uppercase mb-7">{`0${i + 1} / ${v.tag}`}</div>
-            <h3 className="font-display font-semibold leading-tight mb-5" style={{ fontSize: '26px', whiteSpace: 'pre-line' }}>
-              {v.headline}
-            </h3>
-            <p className="text-muted text-sm leading-relaxed mb-8">{v.body}</p>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '32px' }}>
+              <span className="font-mono" style={{ fontSize: '10px', color: '#8A6A1E', letterSpacing: '0.14em' }}>{v.num} / {v.vertical.toUpperCase()}</span>
+            </div>
 
-            <div className="pt-6 border-t border-graphite">
-              <div className="font-mono text-xs text-muted tracking-wider uppercase mb-3">Signals we watch</div>
-              <div className="flex flex-wrap gap-2">
+            <h3 className="font-display" style={{
+              fontSize: '28px', fontWeight: 600,
+              lineHeight: 1.1, letterSpacing: '-0.02em',
+              color: '#F0EBE1', marginBottom: '20px',
+              whiteSpace: 'pre-line',
+            }}>{v.headline}</h3>
+
+            <p className="font-ui" style={{ fontSize: '14px', fontWeight: 300, color: '#9A9188', lineHeight: 1.8, marginBottom: '40px', letterSpacing: '0.01em' }}>
+              {v.body}
+            </p>
+
+            {/* Signals */}
+            <div style={{ paddingTop: '28px', borderTop: '1px solid #1a1a1a' }}>
+              <div className="font-mono" style={{ fontSize: '9px', color: '#9A9188', letterSpacing: '0.14em', textTransform: 'uppercase', marginBottom: '14px' }}>Signals we watch</div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                 {v.signals.map(s => (
-                  <span key={s} className="font-mono text-xs text-muted border border-graphite px-3 py-1.5 rounded-sm">{s}</span>
+                  <div key={s} style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                    <div style={{ width: '4px', height: '4px', borderRadius: '50%', background: '#8A6A1E', flexShrink: 0 }} />
+                    <span className="font-mono" style={{ fontSize: '11px', color: '#9A9188' }}>{s}</span>
+                  </div>
                 ))}
               </div>
             </div>
 
-            <div className="mt-6 pt-4 border-t border-graphite flex items-center justify-between">
-              <span className="font-mono text-xs text-muted">Buyers</span>
-              <span className="font-mono text-xs text-gold">{v.buyers}</span>
+            <div style={{ marginTop: '24px', paddingTop: '20px', borderTop: '1px solid #1a1a1a', display: 'flex', justifyContent: 'space-between' }}>
+              <span className="font-mono" style={{ fontSize: '9px', color: '#9A9188', letterSpacing: '0.1em', textTransform: 'uppercase' }}>Buyer</span>
+              <span className="font-mono" style={{ fontSize: '9px', color: '#C4972A', letterSpacing: '0.1em' }}>{v.buyer}</span>
             </div>
-          </motion.div>
+          </div>
         ))}
       </div>
     </section>

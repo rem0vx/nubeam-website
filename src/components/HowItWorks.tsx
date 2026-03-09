@@ -1,91 +1,123 @@
-import { motion } from 'framer-motion'
-import { useInView } from 'framer-motion'
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 
 const stages = [
   {
     num: '01',
     name: 'Signal',
-    desc: '10+ public sources monitored around the clock. SEC 8-K filings, Form D rounds, NLRB complaints, OSHA violations, WARN Act notices, FDIC activity, CFPB enforcement, federal contracts, and news RSS. Every event surfaces before your competition sees it.',
-    stat: '10+ sources live',
+    headline: 'The event already\nhappened. We saw it.',
+    body: '10+ public sources monitored continuously. SEC 8-K filings, Form D rounds, NLRB complaints, OSHA violations, WARN Act notices, FDIC activity, CFPB enforcement, federal contracts. Every event surfaces before your competition sees it.',
+    stat: '10+ sources',
+    unit: 'live',
   },
   {
     num: '02',
     name: 'Qualify',
-    desc: 'Every company hit gets enriched. Pain points, competitor landscape, customer profile, leadership context. We build the full picture before a word of outreach is written. No generic angles. No guessing.',
-    stat: 'Full context. Always.',
+    headline: 'Full context\nbefore a word is written.',
+    body: 'Every company hit gets enriched. Pain points, competitor landscape, customer profile, leadership context. We build the picture before a word of outreach is written. No generic angles. No guessing.',
+    stat: '100%',
+    unit: 'enriched',
   },
   {
     num: '03',
     name: 'Introduce',
-    desc: 'CXO-Lang. Event → observation → connection → qualifying question. Written as an introduction, not a pitch. The prospect is offered access, not sold to. Every email is tied to something that just happened.',
-    stat: 'Connector frame. Not sales.',
+    headline: 'An introduction.\nNot a pitch.',
+    body: 'Event → observation → connection → qualifying question. Written in the connector frame. The prospect is offered access, not sold to. Every email is tied to something that just happened to their company.',
+    stat: 'CXO-Lang',
+    unit: 'always',
   },
   {
     num: '04',
     name: 'Close',
-    desc: 'Qualified conversations forwarded to you immediately. You don\'t touch the keyboard until a real human is on the other end asking how to move forward. We handled everything before that moment.',
-    stat: '<24h signal to conversation',
+    headline: 'You review replies.\nWe handled the rest.',
+    body: 'Qualified conversations forwarded immediately. You don\'t touch the keyboard until a real human is on the other end asking how to move forward.',
+    stat: '<24h',
+    unit: 'turnaround',
   },
 ]
 
 export default function HowItWorks() {
-  const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-80px' })
+  const ref = useRef<HTMLElement>(null)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.querySelectorAll('.reveal').forEach((el, i) => {
+            setTimeout(() => el.classList.add('visible'), i * 120)
+          })
+        }
+      })
+    }, { threshold: 0.08, rootMargin: '-60px' })
+    if (ref.current) observer.observe(ref.current)
+    return () => observer.disconnect()
+  }, [])
 
   return (
-    <section id="how-it-works" ref={ref} style={{ background: '#060608', padding: '120px 60px' }}>
-      <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
-          className="flex items-center gap-4 mb-8"
-        >
-          <div className="w-7 h-px bg-aged-gold" />
-          <span className="font-mono text-xs text-muted tracking-widest uppercase">Infrastructure, not agency</span>
-        </motion.div>
-
-        <div className="flex items-end justify-between mb-16">
-          <motion.h2
-            initial={{ opacity: 0, y: 16 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
-            className="font-display font-semibold leading-tight tracking-tight"
-            style={{ fontSize: 'clamp(36px, 5vw, 60px)' }}
-          >
-            From signal<br />to conversation.
-          </motion.h2>
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={inView ? { opacity: 1 } : {}}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="text-right"
-          >
-            <div className="font-mono text-5xl font-medium text-gold" style={{ lineHeight: 1 }}>24h</div>
-            <div className="font-mono text-xs text-muted mt-2 tracking-wider">average turnaround</div>
-          </motion.div>
+    <section id="how-it-works" ref={ref} style={{ background: '#0a0a0a', padding: '128px 64px' }}>
+      <div style={{ maxWidth: '1320px', margin: '0 auto' }}>
+        <div className="reveal" style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '48px' }}>
+          <div style={{ width: '32px', height: '1px', background: '#8A6A1E' }} />
+          <span className="font-mono" style={{ fontSize: '10px', color: '#9A9188', letterSpacing: '0.14em', textTransform: 'uppercase' }}>Infrastructure, not agency</span>
         </div>
 
-        <div className="grid grid-cols-4 border border-graphite rounded-sm overflow-hidden">
+        <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: '80px' }}>
+          <h2 className="font-display reveal d1" style={{ fontSize: 'clamp(40px, 5vw, 64px)', fontWeight: 600, lineHeight: 1.0, letterSpacing: '-0.025em' }}>
+            From signal<br />
+            to conversation.
+          </h2>
+          <div className="reveal d2" style={{ textAlign: 'right' }}>
+            <div className="font-mono" style={{ fontSize: '56px', fontWeight: 400, color: '#C4972A', lineHeight: 1, letterSpacing: '-0.03em' }}>24h</div>
+            <div className="font-mono" style={{ fontSize: '10px', color: '#9A9188', marginTop: '8px', letterSpacing: '0.1em', textTransform: 'uppercase' }}>average turnaround</div>
+          </div>
+        </div>
+
+        {/* Steps — horizontal ruled layout, no boxes */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', borderTop: '1px solid #2a2a2a' }}>
           {stages.map((s, i) => (
-            <motion.div
+            <div
               key={s.num}
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.1 + i * 0.1, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
-              className="p-10 border-r border-graphite last:border-r-0 bg-void hover:bg-smoke transition-colors duration-200 relative group"
+              className="reveal"
+              style={{
+                padding: '48px 36px 48px 0',
+                borderRight: i < 3 ? '1px solid #2a2a2a' : 'none',
+                paddingLeft: i > 0 ? '36px' : '0',
+                transitionDelay: `${i * 0.12}s`,
+                position: 'relative',
+              }}
             >
-              {i < stages.length - 1 && (
-                <div className="absolute top-1/2 -right-3 w-6 h-6 rounded-full bg-void border border-graphite flex items-center justify-center z-10">
-                  <span className="font-mono text-gold text-xs">→</span>
-                </div>
+              {/* Step number */}
+              <div className="font-mono" style={{ fontSize: '10px', color: '#8A6A1E', letterSpacing: '0.14em', textTransform: 'uppercase', marginBottom: '28px' }}>
+                {s.num} / {s.name}
+              </div>
+
+              {/* Headline */}
+              <h3 className="font-display" style={{
+                fontSize: '24px', fontWeight: 600,
+                lineHeight: 1.15, letterSpacing: '-0.02em',
+                marginBottom: '18px', whiteSpace: 'pre-line',
+              }}>{s.headline}</h3>
+
+              <p className="font-ui" style={{ fontSize: '13px', fontWeight: 300, color: '#9A9188', lineHeight: 1.8, letterSpacing: '0.01em', marginBottom: '40px' }}>
+                {s.body}
+              </p>
+
+              {/* Stat */}
+              <div style={{ paddingTop: '24px', borderTop: '1px solid #1a1a1a' }}>
+                <span className="font-mono" style={{ fontSize: '22px', color: '#C4972A', letterSpacing: '-0.02em', fontWeight: 400 }}>{s.stat}</span>
+                <span className="font-mono" style={{ fontSize: '11px', color: '#9A9188', marginLeft: '8px', letterSpacing: '0.08em', textTransform: 'uppercase' }}>{s.unit}</span>
+              </div>
+
+              {/* Arrow connector */}
+              {i < 3 && (
+                <div className="font-mono" style={{
+                  position: 'absolute', top: '50%', right: '-12px',
+                  transform: 'translateY(-50%)',
+                  fontSize: '11px', color: '#C4972A',
+                  background: '#0a0a0a', padding: '4px',
+                  zIndex: 1,
+                }}>→</div>
               )}
-              <div className="font-mono text-xs text-aged-gold tracking-widest uppercase mb-7">{s.num} / {s.name}</div>
-              <div className="font-display font-semibold text-bone mb-4" style={{ fontSize: '26px', lineHeight: 1.1 }}>{s.name}</div>
-              <p className="text-muted text-sm leading-relaxed">{s.desc}</p>
-              <div className="mt-8 pt-6 border-t border-graphite font-mono text-xs text-gold">{s.stat}</div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

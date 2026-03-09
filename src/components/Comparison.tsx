@@ -1,4 +1,5 @@
-import { useEffect, useRef } from 'react'
+import { motion } from 'framer-motion'
+import { staggerContainer, fadeUp, fadeLeft, vp } from '../lib/motion'
 
 const rows = [
   { attr: 'Positioning', them: 'Vendor with a product', us: 'Operator with access on both sides of the table' },
@@ -9,58 +10,71 @@ const rows = [
   { attr: 'What you pay for', them: 'Leads you close yourself', us: 'Qualified conversations that already took place' },
 ]
 
+const rowVariant = {
+  hidden: { opacity: 0, x: -12 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] } },
+}
+
 export default function Comparison() {
-  const ref = useRef<HTMLElement>(null)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.querySelectorAll('.reveal').forEach((el, i) => {
-            setTimeout(() => el.classList.add('visible'), i * 80)
-          })
-        }
-      })
-    }, { threshold: 0.1, rootMargin: '-60px' })
-    if (ref.current) observer.observe(ref.current)
-    return () => observer.disconnect()
-  }, [])
-
   return (
-    <section ref={ref} style={{ padding: '128px 64px', maxWidth: '1320px', margin: '0 auto' }}>
-      <div className="reveal" style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '48px' }}>
-        <div style={{ width: '32px', height: '1px', background: '#8A6A1E' }} />
-        <span className="font-mono" style={{ fontSize: '10px', color: '#9A9188', letterSpacing: '0.14em', textTransform: 'uppercase' }}>Why we're different</span>
-      </div>
+    <section style={{ padding: '128px 64px', maxWidth: '1320px', margin: '0 auto' }}>
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={vp}
+        variants={staggerContainer(0.05, 0.1)}
+      >
+        <motion.div variants={fadeLeft} style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '48px' }}>
+          <div style={{ width: '32px', height: '1px', background: '#8A6A1E' }} />
+          <span className="font-mono" style={{ fontSize: '10px', color: '#9A9188', letterSpacing: '0.14em', textTransform: 'uppercase' }}>Why we're different</span>
+        </motion.div>
 
-      <h2 className="font-display reveal d1" style={{ fontSize: 'clamp(40px, 5vw, 64px)', fontWeight: 600, lineHeight: 1.0, letterSpacing: '-0.025em', marginBottom: '80px' }}>
-        Not an agency.<br />
-        <em style={{ fontStyle: 'italic', color: '#9A9188' }}>An operator.</em>
-      </h2>
+        <motion.h2
+          variants={fadeUp}
+          className="font-display"
+          style={{ fontSize: 'clamp(40px, 5vw, 64px)', fontWeight: 600, lineHeight: 1.0, letterSpacing: '-0.025em', marginBottom: '80px' }}
+        >
+          Not an agency.<br />
+          <em style={{ fontStyle: 'italic', color: '#9A9188' }}>An operator.</em>
+        </motion.h2>
+      </motion.div>
 
-      {/* Table — pure typography, no box */}
-      <div className="reveal d2" style={{ borderTop: '1px solid #2a2a2a' }}>
+      {/* Table */}
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={vp}
+        variants={staggerContainer(0.1, 0.08)}
+        style={{ borderTop: '1px solid #2a2a2a' }}
+      >
         {/* Header */}
-        <div style={{ display: 'grid', gridTemplateColumns: '180px 1fr 1fr', borderBottom: '1px solid #2a2a2a', background: '#141414' }}>
+        <motion.div
+          variants={fadeUp}
+          style={{ display: 'grid', gridTemplateColumns: '180px 1fr 1fr', borderBottom: '1px solid #2a2a2a', background: '#141414' }}
+        >
           <div style={{ padding: '16px 0' }} />
           <div className="font-mono" style={{ padding: '16px 32px', fontSize: '10px', color: '#9A9188', letterSpacing: '0.12em', textTransform: 'uppercase', borderLeft: '1px solid #2a2a2a' }}>Everyone else</div>
           <div className="font-mono" style={{ padding: '16px 32px', fontSize: '10px', color: '#C4972A', letterSpacing: '0.12em', textTransform: 'uppercase', borderLeft: '1px solid #2a2a2a' }}>nuBeam Gen</div>
-        </div>
+        </motion.div>
 
         {rows.map((r) => (
-          <div key={r.attr} style={{
-            display: 'grid', gridTemplateColumns: '180px 1fr 1fr',
-            borderBottom: '1px solid rgba(42,42,42,0.5)',
-          }}>
+          <motion.div
+            key={r.attr}
+            variants={rowVariant}
+            style={{
+              display: 'grid', gridTemplateColumns: '180px 1fr 1fr',
+              borderBottom: '1px solid rgba(42,42,42,0.5)',
+            }}
+          >
             <div className="font-mono" style={{ padding: '22px 0', fontSize: '10px', color: '#9A9188', letterSpacing: '0.1em', textTransform: 'uppercase', display: 'flex', alignItems: 'center' }}>{r.attr}</div>
             <div className="font-ui" style={{ padding: '22px 32px', fontSize: '14px', fontWeight: 300, color: '#9A9188', lineHeight: 1.6, borderLeft: '1px solid rgba(42,42,42,0.5)', display: 'flex', alignItems: 'center' }}>{r.them}</div>
             <div className="font-ui" style={{ padding: '22px 32px', fontSize: '14px', fontWeight: 300, color: '#F0EBE1', lineHeight: 1.6, borderLeft: '1px solid rgba(42,42,42,0.5)', display: 'flex', alignItems: 'center', gap: '12px', background: 'rgba(196,151,42,0.03)' }}>
               <span className="font-mono" style={{ color: '#C4972A', fontSize: '11px', flexShrink: 0 }}>→</span>
               {r.us}
             </div>
-          </div>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
     </section>
   )
 }

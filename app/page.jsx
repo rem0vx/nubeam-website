@@ -120,7 +120,7 @@ export default function LeadMagnetPage() {
             nuBeam <span className="text-[#FFE259]">Gen</span>
           </span>
 
-          <div className="hidden md:flex items-center gap-10 text-xs tracking-widest uppercase text-[#444] font-light">
+          <div className="hidden md:flex items-center gap-10 text-xs tracking-widest uppercase text-[#999] font-light">
             <a href="#services" className="hover:text-[#e2e2e2] transition-colors cursor-pointer">Services</a>
             <a href="#process" className="hover:text-[#e2e2e2] transition-colors cursor-pointer">Process</a>
             <a href="#who" className="hover:text-[#e2e2e2] transition-colors cursor-pointer">Who We Work With</a>
@@ -133,7 +133,7 @@ export default function LeadMagnetPage() {
           </div>
 
           <button
-            className="md:hidden text-[#555] hover:text-white transition-colors cursor-pointer"
+            className="md:hidden text-[#aaa] hover:text-white transition-colors cursor-pointer"
             onClick={() => setMobileOpen((o) => !o)}
             aria-label="Toggle menu"
           >
@@ -146,7 +146,7 @@ export default function LeadMagnetPage() {
         </div>
 
         {mobileOpen && (
-          <div className="md:hidden border-b border-[#1c1c1c] bg-[#0a0a0a] px-8 py-6 flex flex-col gap-5 text-xs tracking-widest uppercase text-[#444]">
+          <div className="md:hidden border-b border-[#1c1c1c] bg-[#0a0a0a] px-8 py-6 flex flex-col gap-5 text-xs tracking-widest uppercase text-[#999]">
             <a href="#services" onClick={() => setMobileOpen(false)} className="hover:text-white transition-colors cursor-pointer">Services</a>
             <a href="#process" onClick={() => setMobileOpen(false)} className="hover:text-white transition-colors cursor-pointer">Process</a>
             <a href="#who" onClick={() => setMobileOpen(false)} className="hover:text-white transition-colors cursor-pointer">Who We Work With</a>
@@ -156,12 +156,12 @@ export default function LeadMagnetPage() {
       </nav>
 
       {/* ━━━ HERO ━━━ */}
-      <BeamsBackground intensity="subtle" className="pt-16 px-8">
+      <BeamsBackground intensity="strong" className="pt-16 px-8">
       <section className="min-h-screen flex flex-col justify-center">
         <div className="max-w-7xl mx-auto w-full py-24 md:py-32">
           {/* Eyebrow */}
           <div className="fade-up mb-12">
-            <span className="text-[10px] tracking-[0.4em] uppercase text-[#333] font-light">
+            <span className="text-[10px] tracking-[0.4em] uppercase text-[#888] font-light">
               Founder Growth &nbsp;&middot;&nbsp; Market Access &nbsp;&middot;&nbsp; By Application Only
             </span>
           </div>
@@ -185,7 +185,7 @@ export default function LeadMagnetPage() {
             className="fade-up flex flex-col md:flex-row md:items-end gap-10 md:gap-24 max-w-5xl"
             style={{ transitionDelay: '0.2s' }}
           >
-            <p className="text-[#555] text-base md:text-lg font-light leading-relaxed max-w-md">
+            <p className="text-[#aaa] text-base md:text-lg font-light leading-relaxed max-w-md">
               We connect founders to relationships across $3 trillion in capital&nbsp;—
               Family Offices, Venture Capital, Private Equity, and Hedge Funds&nbsp;—
               worldwide. Our team carries $80B in transaction experience.
@@ -197,7 +197,7 @@ export default function LeadMagnetPage() {
               >
                 Apply to Work With Us
               </button>
-              <span className="text-[10px] tracking-widest uppercase text-[#2a2a2a] text-center">
+              <span className="text-[10px] tracking-widest uppercase text-[#777] text-center">
                 Selective &nbsp;&middot;&nbsp; Confidential &nbsp;&middot;&nbsp; Introduction-led
               </span>
             </div>
@@ -219,7 +219,7 @@ export default function LeadMagnetPage() {
                 >
                   {s.num}
                 </div>
-                <div className="text-[10px] tracking-widest uppercase text-[#333]">{s.label}</div>
+                <div className="text-[10px] tracking-widest uppercase text-[#888]">{s.label}</div>
               </div>
             ))}
           </div>
@@ -232,7 +232,7 @@ export default function LeadMagnetPage() {
         <div className="max-w-7xl mx-auto">
           <div className="fade-up mb-16 flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div>
-              <p className="text-[10px] tracking-[0.35em] uppercase text-[#333] mb-5">What We Do</p>
+              <p className="text-[10px] tracking-[0.35em] uppercase text-[#888] mb-5">What We Do</p>
               <h2
                 className="cormorant font-light text-white leading-tight"
                 style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)' }}
@@ -241,7 +241,7 @@ export default function LeadMagnetPage() {
                 <span className="italic">One mandate.</span>
               </h2>
             </div>
-            <p className="text-sm text-[#444] max-w-xs leading-relaxed font-light">
+            <p className="text-sm text-[#999] max-w-xs leading-relaxed font-light">
               Every engagement is structured around the same goal: get you to the right table, prepared and positioned correctly.
             </p>
           </div>
@@ -261,7 +261,7 @@ export default function LeadMagnetPage() {
               >
                 <div className="flex items-center justify-between py-5">
                   <div className="flex items-center gap-8 md:gap-16">
-                    <span className="text-[10px] tracking-widest text-[#333] font-mono w-6">{s.num}</span>
+                    <span className="text-[10px] tracking-widest text-[#888] font-mono w-6">{s.num}</span>
                     <span
                       className="cormorant font-light text-white text-xl md:text-2xl"
                     >
@@ -269,7 +269,7 @@ export default function LeadMagnetPage() {
                     </span>
                   </div>
                   <svg
-                    className={`w-4 h-4 text-[#333] transition-transform duration-300 shrink-0 ${openService === i ? 'rotate-45' : ''}`}
+                    className={`w-4 h-4 text-[#888] transition-transform duration-300 shrink-0 ${openService === i ? 'rotate-45' : ''}`}
                     fill="none"
                     stroke="currentColor"
                     strokeWidth={1}
@@ -279,7 +279,7 @@ export default function LeadMagnetPage() {
                   </svg>
                 </div>
                 <div className={`service-desc ${openService === i ? 'open' : ''}`}>
-                  <p className="text-sm text-[#555] font-light leading-relaxed pb-5 pl-14 md:pl-24 max-w-2xl">
+                  <p className="text-sm text-[#aaa] font-light leading-relaxed pb-5 pl-14 md:pl-24 max-w-2xl">
                     {s.desc}
                   </p>
                 </div>
@@ -297,7 +297,7 @@ export default function LeadMagnetPage() {
             {/* Left — copy */}
             <div>
               <div className="fade-up mb-6">
-                <p className="text-[10px] tracking-[0.35em] uppercase text-[#333]">Track Record</p>
+                <p className="text-[10px] tracking-[0.35em] uppercase text-[#888]">Track Record</p>
               </div>
 
               {/* Giant layered number */}
@@ -320,13 +320,13 @@ export default function LeadMagnetPage() {
               </div>
 
               <div className="fade-up" style={{ transitionDelay: '0.16s' }}>
-                <p className="text-[#444] text-sm font-light leading-relaxed mb-10 max-w-sm">
+                <p className="text-[#999] text-sm font-light leading-relaxed mb-10 max-w-sm">
                   In total transactions across the careers of our team members and advisors&nbsp;—
                   spanning private debt &amp; equity and go-public transactions for private companies.
                 </p>
                 <div className="flex flex-wrap gap-x-6 gap-y-3">
                   {['Family Offices', 'Venture Capital', 'Private Equity', 'Hedge Funds'].map((t) => (
-                    <span key={t} className="text-[10px] tracking-[0.3em] uppercase text-[#2a2a2a]">{t}</span>
+                    <span key={t} className="text-[10px] tracking-[0.3em] uppercase text-[#777]">{t}</span>
                   ))}
                 </div>
               </div>
@@ -335,7 +335,7 @@ export default function LeadMagnetPage() {
             {/* Right — interactive globe */}
             <div className="fade-up flex flex-col items-center" style={{ transitionDelay: '0.12s' }}>
               <GlobePulse className="w-full max-w-[420px]" speed={0.002} />
-              <p className="text-[10px] tracking-[0.25em] uppercase text-[#2a2a2a] mt-6 text-center">
+              <p className="text-[10px] tracking-[0.25em] uppercase text-[#777] mt-6 text-center">
                 London &nbsp;&middot;&nbsp; New York &nbsp;&middot;&nbsp; Dubai &nbsp;&middot;&nbsp; Singapore &nbsp;&middot;&nbsp; Zurich &nbsp;&middot;&nbsp; Tokyo
               </p>
             </div>
@@ -348,7 +348,7 @@ export default function LeadMagnetPage() {
       <section className="px-8 py-28 border-t border-[#1c1c1c] overflow-hidden">
         <div className="max-w-7xl mx-auto">
           <div className="fade-up mb-6">
-            <p className="text-[10px] tracking-[0.35em] uppercase text-[#333] mb-5">How We Operate</p>
+            <p className="text-[10px] tracking-[0.35em] uppercase text-[#888] mb-5">How We Operate</p>
             <h2
               className="cormorant font-light text-white leading-tight mb-4"
               style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)' }}
@@ -356,7 +356,7 @@ export default function LeadMagnetPage() {
               Tracking mandates.<br />
               <span className="italic">Gauging market signals.</span>
             </h2>
-            <p className="text-sm text-[#444] font-light leading-relaxed max-w-md">
+            <p className="text-sm text-[#999] font-light leading-relaxed max-w-md">
               We monitor capital deployment activity, fund vintages, allocation mandates,
               and market conditions across our network — so every introduction is timed correctly.
             </p>
@@ -430,7 +430,7 @@ export default function LeadMagnetPage() {
             {['Active Deployment Cycles', 'Sector Mandates', 'Fund Vintages', 'LP Allocation Windows', 'Co-Investment Appetite', 'Strategic M&A Interest'].map((tag) => (
               <span
                 key={tag}
-                className="text-[10px] tracking-widest uppercase text-[#333] border border-[#1c1c1c] px-3 py-1.5 font-light"
+                className="text-[10px] tracking-widest uppercase text-[#888] border border-[#1c1c1c] px-3 py-1.5 font-light"
               >
                 {tag}
               </span>
@@ -443,7 +443,7 @@ export default function LeadMagnetPage() {
       <section id="process" className="px-8 py-28 border-t border-[#1c1c1c]">
         <div className="max-w-7xl mx-auto">
           <div className="fade-up mb-16">
-            <p className="text-[10px] tracking-[0.35em] uppercase text-[#333] mb-5">The Process</p>
+            <p className="text-[10px] tracking-[0.35em] uppercase text-[#888] mb-5">The Process</p>
             <h2
               className="cormorant font-light text-white leading-tight"
               style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)' }}
@@ -461,16 +461,16 @@ export default function LeadMagnetPage() {
                 className="fade-up border-t border-[#1c1c1c] py-8 grid grid-cols-1 md:grid-cols-[80px_1fr_120px] gap-4 md:gap-12 items-start"
                 style={{ transitionDelay: `${i * 0.08}s` }}
               >
-                <span className="text-[10px] tracking-widest text-[#333] font-mono pt-1">{p.phase}</span>
+                <span className="text-[10px] tracking-widest text-[#888] font-mono pt-1">{p.phase}</span>
                 <div>
                   <h3
                     className="cormorant font-light text-white text-2xl md:text-3xl mb-3"
                   >
                     {p.title}
                   </h3>
-                  <p className="text-sm text-[#444] font-light leading-relaxed max-w-lg">{p.desc}</p>
+                  <p className="text-sm text-[#999] font-light leading-relaxed max-w-lg">{p.desc}</p>
                 </div>
-                <span className="text-[10px] tracking-widest uppercase text-[#2a2a2a] font-light pt-1 md:text-right">{p.posture}</span>
+                <span className="text-[10px] tracking-widest uppercase text-[#777] font-light pt-1 md:text-right">{p.posture}</span>
               </div>
             ))}
             <div className="border-t border-[#1c1c1c]" />
@@ -482,7 +482,7 @@ export default function LeadMagnetPage() {
       <section id="who" className="px-8 py-28 border-t border-[#1c1c1c]">
         <div className="max-w-7xl mx-auto">
           <div className="fade-up mb-16">
-            <p className="text-[10px] tracking-[0.35em] uppercase text-[#333] mb-5">Selectivity</p>
+            <p className="text-[10px] tracking-[0.35em] uppercase text-[#888] mb-5">Selectivity</p>
             <h2
               className="cormorant font-light text-white leading-tight"
               style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)' }}
@@ -514,7 +514,7 @@ export default function LeadMagnetPage() {
 
             {/* Who doesn't fit */}
             <div>
-              <p className="text-[10px] tracking-[0.3em] uppercase text-[#333] mb-8">Who doesn&apos;t fit</p>
+              <p className="text-[10px] tracking-[0.3em] uppercase text-[#888] mb-8">Who doesn&apos;t fit</p>
               <ul className="space-y-5">
                 {[
                   'Pre-product or pre-revenue',
@@ -522,14 +522,14 @@ export default function LeadMagnetPage() {
                   'Already working with a banker or placement agent',
                   'Not willing to run a structured, focused process',
                 ].map((item, i) => (
-                  <li key={i} className="flex items-start gap-5 text-sm text-[#333] font-light leading-relaxed">
-                    <span className="text-[#222] mt-1 shrink-0 text-xs">—</span>
+                  <li key={i} className="flex items-start gap-5 text-sm text-[#888] font-light leading-relaxed">
+                    <span className="text-[#666] mt-1 shrink-0 text-xs">—</span>
                     {item}
                   </li>
                 ))}
               </ul>
 
-              <p className="mt-12 text-[11px] tracking-widest uppercase text-[#2a2a2a] font-light italic">
+              <p className="mt-12 text-[11px] tracking-widest uppercase text-[#777] font-light italic">
                 If you&apos;re unsure, the application will tell us both.
               </p>
             </div>
@@ -542,7 +542,7 @@ export default function LeadMagnetPage() {
         <div className="max-w-7xl mx-auto">
           <div className="fade-up grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-32 items-center">
             <div>
-              <p className="text-[10px] tracking-[0.35em] uppercase text-[#333] mb-5">Work With Us</p>
+              <p className="text-[10px] tracking-[0.35em] uppercase text-[#888] mb-5">Work With Us</p>
               <h2
                 className="cormorant font-light text-white leading-tight mb-6"
                 style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)' }}
@@ -550,12 +550,12 @@ export default function LeadMagnetPage() {
                 Ready to open<br />
                 <span className="italic">the right doors?</span>
               </h2>
-              <p className="text-sm text-[#444] font-light leading-relaxed max-w-sm">
+              <p className="text-sm text-[#999] font-light leading-relaxed max-w-sm">
                 Schedule a private 30-minute conversation. We&apos;ll discuss
                 your raise, your network gaps, and whether there&apos;s a fit
                 for us to work together.
               </p>
-              <div className="mt-10 space-y-3 text-[10px] tracking-widest uppercase text-[#2a2a2a]">
+              <div className="mt-10 space-y-3 text-[10px] tracking-widest uppercase text-[#777]">
                 <p>— Confidential</p>
                 <p>— No obligation</p>
                 <p>— Selective engagements only</p>
@@ -571,7 +571,7 @@ export default function LeadMagnetPage() {
               >
                 <div className="flex items-start justify-between mb-8">
                   <div>
-                    <p className="text-[10px] tracking-widest uppercase text-[#333] mb-2">Book a Call</p>
+                    <p className="text-[10px] tracking-widest uppercase text-[#888] mb-2">Book a Call</p>
                     <p
                       className="cormorant text-white font-light"
                       style={{ fontSize: 'clamp(1.4rem, 2.5vw, 2rem)' }}
@@ -580,7 +580,7 @@ export default function LeadMagnetPage() {
                     </p>
                   </div>
                   <svg
-                    className="w-5 h-5 text-[#333] group-hover:text-[#FFE259] group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-200 shrink-0 mt-1"
+                    className="w-5 h-5 text-[#888] group-hover:text-[#FFE259] group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-200 shrink-0 mt-1"
                     fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24"
                   >
                     <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
@@ -588,7 +588,7 @@ export default function LeadMagnetPage() {
                 </div>
 
                 <div className="border-t border-[#1c1c1c] pt-8">
-                  <p className="text-xs text-[#333] font-light leading-relaxed">
+                  <p className="text-xs text-[#888] font-light leading-relaxed">
                     Walk us through your business, your raise structure, and where
                     prior conversations have stalled. We&apos;ll share whether our
                     network is the right fit.
@@ -612,8 +612,8 @@ export default function LeadMagnetPage() {
           <span className="cormorant font-medium text-lg tracking-widest text-white">
             nuBeam <span className="text-[#FFE259]">Gen</span>
           </span>
-          <p className="text-[10px] tracking-[0.3em] uppercase text-[#222]">Founder Focused Growth Advisory</p>
-          <p className="text-[10px] text-[#222] tracking-wider">&copy; {new Date().getFullYear()} nuBeam Gen</p>
+          <p className="text-[10px] tracking-[0.3em] uppercase text-[#666]">Founder Focused Growth Advisory</p>
+          <p className="text-[10px] text-[#666] tracking-wider">&copy; {new Date().getFullYear()} nuBeam Gen</p>
         </div>
       </footer>
 

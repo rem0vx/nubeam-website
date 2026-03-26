@@ -55,6 +55,30 @@ const PROCESS = [
   { phase: '04', title: 'Curated Introductions', posture: 'Live', desc: '3–7 personal introductions over a defined window. Full context on both sides. No spray. No mass outreach.' },
 ]
 
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  name: 'nuBeam Gen',
+  url: 'https://nubeam.io',
+  description: 'Founder growth and market access advisory. Warm introductions to Family Offices, Venture Capital, Private Equity, and Hedge Funds worldwide.',
+  areaServed: 'Worldwide',
+  serviceType: [
+    'Investor Introductions',
+    'Capital Network Access',
+    'Founder Advisory',
+    'Deal Flow Sourcing',
+    'Market Access Advisory',
+  ],
+  knowsAbout: [
+    'Family Office Investing',
+    'Venture Capital',
+    'Private Equity',
+    'Hedge Funds',
+    'Founder Capital Raising',
+    'Institutional Investor Relations',
+  ],
+}
+
 export default function LeadMagnetPage() {
   const pageRef = useFadeUp()
   const [showFloating, setShowFloating] = useState(false)
@@ -74,6 +98,7 @@ export default function LeadMagnetPage() {
 
   return (
     <div ref={pageRef} className="min-h-screen bg-[#0a0a0a] text-[#e2e2e2]">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <style jsx global>{`
         @import url('https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap');
 

@@ -369,17 +369,17 @@ export default function LeadMagnetPage() {
               <IconContainer
                 text="Form D Filings"
                 delay={0.2}
-                icon={<HiDocumentText className="h-6 w-6 text-[#FFE259]/60" />}
+                icon={<HiDocumentText className="h-6 w-6 text-[#FFE259]" />}
               />
               <IconContainer
                 delay={0.4}
                 text="Capital Allocations"
-                icon={<AiFillDollarCircle className="h-6 w-6 text-[#FFE259]/60" />}
+                icon={<AiFillDollarCircle className="h-6 w-6 text-[#FFE259]" />}
               />
               <IconContainer
                 text="Fund Mandates"
                 delay={0.3}
-                icon={<RiFundsFill className="h-6 w-6 text-[#FFE259]/60" />}
+                icon={<RiFundsFill className="h-6 w-6 text-[#FFE259]" />}
               />
             </div>
 
@@ -388,14 +388,14 @@ export default function LeadMagnetPage() {
               <IconContainer
                 text="PE Activity"
                 delay={0.5}
-                icon={<BsBuildingsFill className="h-6 w-6 text-[#FFE259]/60" />}
+                icon={<BsBuildingsFill className="h-6 w-6 text-[#FFE259]" />}
               />
             </div>
             <div className="absolute right-4 md:right-12 top-1/2 -translate-y-1/2">
               <IconContainer
                 text="Market Signals"
                 delay={0.6}
-                icon={<BiSolidChart className="h-6 w-6 text-[#FFE259]/60" />}
+                icon={<BiSolidChart className="h-6 w-6 text-[#FFE259]" />}
               />
             </div>
 
@@ -404,17 +404,17 @@ export default function LeadMagnetPage() {
               <IconContainer
                 delay={0.7}
                 text="Family Offices"
-                icon={<BiSolidBank className="h-6 w-6 text-[#FFE259]/60" />}
+                icon={<BiSolidBank className="h-6 w-6 text-[#FFE259]" />}
               />
               <IconContainer
                 delay={0.8}
                 text="Vintage Timing"
-                icon={<RiLineChartFill className="h-6 w-6 text-[#FFE259]/60" />}
+                icon={<RiLineChartFill className="h-6 w-6 text-[#FFE259]" />}
               />
               <IconContainer
                 delay={0.5}
                 text="Fund Flow Data"
-                icon={<BsClipboardDataFill className="h-6 w-6 text-[#FFE259]/60" />}
+                icon={<BsClipboardDataFill className="h-6 w-6 text-[#FFE259]" />}
               />
             </div>
 
@@ -495,7 +495,7 @@ export default function LeadMagnetPage() {
           <div className="fade-up grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24" style={{ transitionDelay: '0.1s' }}>
             {/* Who fits */}
             <div>
-              <p className="text-[10px] tracking-[0.3em] uppercase text-[#FFE259]/60 mb-8">Who fits</p>
+              <p className="text-[10px] tracking-[0.3em] uppercase text-[#FFE259] mb-8">Who fits</p>
               <ul className="space-y-5">
                 {[
                   'Raising $2M–$100M in debt, equity, or hybrid structures',

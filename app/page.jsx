@@ -213,7 +213,7 @@ export default function LeadMagnetPage() {
             <p className="text-[#aaa] text-base md:text-lg font-light leading-relaxed max-w-md">
               We connect founders to relationships across $3 trillion in capital&nbsp;—
               Family Offices, Venture Capital, Private Equity, and Hedge Funds&nbsp;—
-              worldwide. Our team carries $80B in transaction experience.
+              worldwide. Our team carries $57M+ in transaction experience.
             </p>
             <div className="flex flex-col gap-4 shrink-0">
               <button
@@ -234,7 +234,7 @@ export default function LeadMagnetPage() {
             style={{ transitionDelay: '0.3s' }}
           >
             {[
-              { num: '$80B', label: 'Team Track Record' },
+              { num: '$57M+', label: 'Team Track Record' },
               { num: '$3T+', label: 'Capital Network' },
               { num: '100+', label: 'Relationships' },
             ].map((s, i) => (
@@ -332,14 +332,14 @@ export default function LeadMagnetPage() {
                   style={{ fontSize: 'clamp(4rem, 10vw, 8rem)', opacity: 0.06, userSelect: 'none' }}
                   aria-hidden="true"
                 >
-                  $80B
+                  $57M+
                 </span>
                 <div className="absolute inset-0 flex flex-col justify-center">
                   <span
                     className="cormorant font-light text-white leading-none tracking-tight"
                     style={{ fontSize: 'clamp(3rem, 8vw, 7rem)' }}
                   >
-                    $80B
+                    $57M+
                   </span>
                 </div>
               </div>
